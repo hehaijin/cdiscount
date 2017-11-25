@@ -14,7 +14,7 @@ from keras.preprocessing.image import ImageDataGenerator
 
 sampledir='sampledir'
 dataroot='data'
-trainfile='train_example.bson'
+trainfile='train.bson'
 
 def categorydict():
 	df=pd.read_csv(path.join(dataroot, 'category_names.csv'))
