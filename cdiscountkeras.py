@@ -28,7 +28,7 @@ def loadModel():
 	else:
 		model_vgg16_conv = VGG16(weights='imagenet', include_top=False)
 		#model_vgg16_conv.summary()
-		input = Input(shape=(180,180,3),name = 'input')
+		input = Input(shape=(90,90,3),name = 'input')
 		output_vgg16_conv = model_vgg16_conv(input)
 		x = Flatten(name='flatten')(output_vgg16_conv)
 		x = Dense(4096, activation='relu', name='fc1')(x)

@@ -7,6 +7,7 @@ import logging
 import random
 from itertools import takewhile
 import io
+import cv2
 from skimage.data import imread
 from keras.preprocessing.image import ImageDataGenerator
 
@@ -59,6 +60,7 @@ def BatchGenerator(batch_size):
 		for i in range(len(imgs)):
 			im=imgs[i]['picture']
 			im=imread(io.BytesIO(im))
+			im=cv2.resize(im,None,fx=0.5, fy=0.5, interpolation = cv2.INTER_AREA)
 			batchX.append(im)
 			batchY.append(cid)
 			count=count+1
