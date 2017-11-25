@@ -34,11 +34,10 @@ my_model.compile(loss='categorical_crossentropy',
 bg2=dataset.BatchGenerator(5000)              
 for e in range(nb_epoch):
 	print("big epoch %d" % e)
-	count=0
 	for X_train, Y_train in bg2:
 		print("batch 5000") 
 		Y_train= np_utils.to_categorical(Y_train,5271)
-		my_model.fit_generator(datagen.flow(X_train, Y_train),steps_per_epoch=32, epochs=1,verbose=1,use_multiprocessing=True)
+		my_model.fit(X_train, Y_train,batch_size=32, epochs=1,verbose=1,use_multiprocessing=True)
      
  
  
