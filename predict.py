@@ -24,7 +24,7 @@ for pics, productid in TestBatchGenerator():
 	if count%1000==0:
 		print(count)
 	r=my_model.predict(pics)
-	r=argmax(r,axis=1)
+	r=np.argmax(r,axis=1)
 	r=np.argmax(np.bincount(r))
 	r=getKey(cat,r)
 	result.append(productid,r)
