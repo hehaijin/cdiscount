@@ -82,7 +82,7 @@ def TestBatchGenerator(batch_size=1):
 	categories=categorydict()
 	count=0
 	batchX=[]
-	batchY=[]
+
 	for sample in bson.decode_file_iter(open(path.join(dataroot,testfile), 'rb')):
 		imgs=sample['imgs']
 		c=sample['_id']
@@ -91,7 +91,8 @@ def TestBatchGenerator(batch_size=1):
 			im=imread(io.BytesIO(im))
 			im=cv2.resize(im,None,fx=0.5, fy=0.5, interpolation = cv2.INTER_AREA)
 			batchX.append(im)
-			batchY.append(c)
+	
+		batchY=c
 		count=count+1
 		#print(count)
 		if count< batch_size:
@@ -100,7 +101,7 @@ def TestBatchGenerator(batch_size=1):
 			yield np.asarray(batchX),np.asarray(batchY)
 			count=0
 			batchX=[]
-			batchY=[]
+			
 	
 
 

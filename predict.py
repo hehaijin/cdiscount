@@ -4,7 +4,7 @@ from dataset import categorydict,TestBatchGenerator
 import pandas as pd
 		
 def getKey(dictionary,value):
-	for k,v in dictionary.items:
+	for k,v in dictionary.items():
 		if v==value:
 			return k
 	return -1
@@ -23,11 +23,13 @@ for pics, productid in TestBatchGenerator():
 	count=count+1
 	if count%1000==0:
 		print(count)
+	if count==10000:
+		break
 	r=my_model.predict(pics)
 	r=np.argmax(r,axis=1)
 	r=np.argmax(np.bincount(r))
 	r=getKey(cat,r)
-	result.append(productid,r)
+	result.append([productid,r])
 	
 	
 result=np.asarray(result)
