@@ -16,6 +16,7 @@ from keras.preprocessing.image import ImageDataGenerator
 sampledir='sampledir'
 dataroot='data'
 trainfile='train.bson'
+testfile='test.bson'
 
 def categorydict():
 	df=pd.read_csv(path.join(dataroot, 'category_names.csv'))
@@ -45,7 +46,8 @@ def getTotalTrainProductCount():
 
 
 
-#a generator that generates indefinately
+#generator that loop through train file to output data in batches.
+#here the batch_size is conting pictures
 def BatchGenerator(batch_size):
 	categories=categorydict()
 	count=0
@@ -74,11 +76,34 @@ def BatchGenerator(batch_size):
 				batchY=[]
 			
 
+#here the batchY is category_id
+#here the batch is counting sample
+def TestBatchGenerator(batch_size):
+	categories=categorydict()
+	count=0
+	batchX=[]
+	batchY=[]
+	for sample in bson.decode_file_iter(open(path.join(dataroot,testfile), 'rb')):
+		imgs=sample['imgs']
+		c=sample['_id']
+		for i in range(len(imgs)):
+			im=imgs[i]['picture']
+			im=imread(io.BytesIO(im))
+			im=cv2.resize(im,None,fx=0.5, fy=0.5, interpolation = cv2.INTER_AREA)
+			batchX.append(im)
+			batchY.append(c)
+		count=count+1
+		#print(count)
+		if count< batch_size:
+			pass
+		else:
+			yield np.asarray(batchX),np.asarray(batchY)
+			count=0
+			batchX=[]
+			batchY=[]
+	
 
-        
-bg=BatchGenerator(3)
-X,Y=next(bg)
-#datagen.fit(X)
+
 
 	
 	
