@@ -78,7 +78,7 @@ def BatchGenerator(batch_size):
 
 #here the batchY is category_id
 #here the batch is counting sample
-def TestBatchGenerator(batch_size):
+def TestBatchGenerator(batch_size=1):
 	categories=categorydict()
 	count=0
 	batchX=[]

@@ -1,6 +1,6 @@
 from cdiscountkeras import loadModel
 import numpy as np
-from dataset import categorydict
+from dataset import categorydict,TestBatchGenerator
 import pandas as pd
 		
 def getKey(dictionary,value):
