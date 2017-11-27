@@ -9,6 +9,13 @@ def getKey(dictionary,value):
 			return k
 	return -1
 
+def reverseDict(d):
+	newd={}
+	for k,v in d.items():
+		newd[v]=key
+	return newd
+	
+
 
 my_model=loadModel()
 
@@ -17,6 +24,8 @@ my_model=loadModel()
 result=[]
 
 cat=categorydict()
+newd=reverseDict(cat)
+
 
 count=0
 for pics, productid in TestBatchGenerator():
@@ -28,7 +37,7 @@ for pics, productid in TestBatchGenerator():
 	r=my_model.predict(pics)
 	r=np.argmax(r,axis=1)
 	r=np.argmax(np.bincount(r))
-	r=getKey(cat,r)
+	r=newd[r]
 	result.append([productid,r])
 	
 	
