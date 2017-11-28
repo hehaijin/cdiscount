@@ -12,7 +12,7 @@ def getKey(dictionary,value):
 def reverseDict(d):
 	newd={}
 	for k,v in d.items():
-		newd[v]=key
+		newd[v]=k
 	return newd
 	
 
@@ -32,8 +32,6 @@ for pics, productid in TestBatchGenerator():
 	count=count+1
 	if count%1000==0:
 		print(count)
-	if count==10000:
-		break
 	r=my_model.predict(pics)
 	r=np.argmax(r,axis=1)
 	r=np.argmax(np.bincount(r))
