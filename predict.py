@@ -43,12 +43,15 @@ for pics, productid in TestBatchGenerator():
 	else: 
 		#get the biggest number of prediction
 		r4=[]
+		j=0
 		for i in r1:
-			r4.append(r[i])
-		k=argmax(r4)
-		print("number of pics "+ str(len(pics)))
-		print(k)
-		print(r1[k])
+			r4.append(r[j,i])
+			j=j+1
+		k=np.argmax(r4)
+		#print("number of pics "+ str(len(pics)))
+		#print(r1.shape)
+		#print(k)
+		#print(r1[k])
 		result.append([productid,r1[k]])
 			
 result=np.asarray(result)
