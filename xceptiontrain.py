@@ -15,7 +15,7 @@ X,Y=bg.__next__()
 datagen.fit(X)
 my_model=cdiscountkeras.loadModel()
 
-sgd = optimizers.SGD(lr=0.0001)
+sgd = optimizers.SGD(lr=0.0001,momentum=0.8)
 my_model.compile(loss='categorical_crossentropy',
               optimizer=sgd,
               metrics=['accuracy'])

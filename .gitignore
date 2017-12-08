@@ -1,3 +1,5 @@
 input
 data
 weights.h5
+*.h5
+*.out
