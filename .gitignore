@@ -3,3 +3,9 @@ data
 weights.h5
 *.h5
 *.out
+nohup.*
+__pycache__
+*.model
+model.*
+submission.csv
+vgg
