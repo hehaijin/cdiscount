@@ -104,7 +104,32 @@ def TestBatchGenerator(batch_size=1):
 			
 	
 
-
+def ClusterImageGenerator(batch_size):
+	categories=categorydict()
+	count=0
+	batchX=[]
+	batchY=[]
+	for sample in bson.decode_file_iter(open(path.join(dataroot,trainfile), 'rb')):
+		imgs=sample['imgs']
+		c=sample['category_id']
+		c=str(c)
+		#print(type(c))
+		cid=categories[c]
+		for i in range(len(imgs)):
+			im=imgs[i]['picture']
+			im=imread(io.BytesIO(im))
+			im=cv2.resize(im,None,fx=0.5, fy=0.5, interpolation = cv2.INTER_AREA)
+			batchX.append(im)
+			batchY.append(c)
+			count=count+1
+			#print(count)
+			if count< batch_size:
+				pass
+			else:
+				yield np.asarray(batchX),np.asarray(batchY)
+				count=0
+				batchX=[]
+				batchY=[]
 
 	
 	
