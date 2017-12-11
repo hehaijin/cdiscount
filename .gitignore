@@ -9,4 +9,5 @@ __pycache__
 model.*
 submission.csv
 vgg
+backup
 clusterfolder
